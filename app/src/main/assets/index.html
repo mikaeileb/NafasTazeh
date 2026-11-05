@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#05261f">
+<title>نفس تازه</title>
+<style>
+:root{--bg:#05261f;--bg2:#082f27;--card:#0d3a30;--card2:#12483a;--line:rgba(177,255,216,.13);--green:#72f2a6;--mint:#b7ffd1;--muted:#a4c8b8;--text:#f2fff7;--yellow:#ffd87a;--red:#ff887c;--shadow:0 12px 36px rgba(0,0,0,.22)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(ellipse at 82% -8%,#155b42 0,transparent 42%),linear-gradient(160deg,var(--bg),#031a16 78%);color:var(--text);font-family:Tahoma,"Noto Sans Arabic",sans-serif;min-height:100vh;font-size:14px;padding-bottom:90px}
+button,input,select{font:inherit}button{cursor:pointer;border:0}
+.app{max-width:650px;margin:auto;padding:env(safe-area-inset-top) 16px 22px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 14px}
+.brand{display:flex;align-items:center;gap:11px}.brand-mark{width:43px;height:43px;border-radius:15px;background:linear-gradient(145deg,#72f2a6,#138855);display:grid;place-items:center;color:#063325;font-size:23px;box-shadow:0 7px 24px #38c87933}.brand strong{font-size:18px;letter-spacing:-.4px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.top-date{color:var(--muted);font-size:11px;text-align:left;line-height:1.8}
+.page{display:none;animation:up .24s ease}.page.active{display:block}@keyframes up{from{opacity:.3;transform:translateY(7px)}to{opacity:1;transform:none}}
+.hero{background:linear-gradient(135deg,#14533e,#0b382e 70%);border:1px solid #72f2a628;border-radius:25px;padding:20px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;width:170px;height:170px;border:1px solid #a5ffd51e;border-radius:50%;left:-60px;top:-70px;box-shadow:0 0 0 18px #a5ffd509,0 0 0 38px #a5ffd506}
+.eyebrow{font-size:11px;color:var(--mint);opacity:.9}.hero h1{font-size:24px;line-height:1.7;margin:8px 0 2px}.hero p{color:#c7e9d8;line-height:1.9;margin:0;font-size:12px;max-width:90%}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px;position:relative;z-index:1}
+.stat{background:#062d2499;border:1px solid #b7ffd11b;padding:12px;border-radius:16px}.stat small{color:var(--muted);font-size:10px;display:block}.stat strong{display:block;font-size:20px;color:var(--green);margin-top:5px}.stat span{font-size:10px;color:var(--muted)}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:23px 2px 11px}.section-head strong{font-size:14px}.section-head span{font-size:11px;color:var(--muted)}
+.card{background:linear-gradient(145deg,#0d3a30,#0a3028);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 8px 22px #00000012}
+.target-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.target-num{font-size:28px;color:var(--green);font-weight:bold}.target-num small{font-size:11px;color:var(--muted);font-weight:normal}
+.progress{height:9px;border-radius:50px;background:#ffffff12;overflow:hidden;margin:12px 0 8px}.progress span{display:block;height:100%;border-radius:50px;background:linear-gradient(90deg,#2bbd76,#a6ffc7);width:0;transition:width .3s}
+.hint{font-size:11px;line-height:1.9;color:var(--muted);margin:4px 0}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}
+.btn{border-radius:14px;padding:13px 12px;font-weight:bold;font-size:12px;display:flex;justify-content:center;align-items:center;gap:7px}
+.primary{background:linear-gradient(135deg,#8bffc0,#45d987);color:#063324}.secondary{background:#ffffff0d;color:var(--mint);border:1px solid var(--line)}.danger{background:#ff887c18;color:#ffaaa2;border:1px solid #ff887c35}
+.btn:active{transform:scale(.98)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{background:#0b382e;border:1px solid var(--line);border-radius:18px;padding:14px}.mini .ico{font-size:19px}.mini strong{display:block;font-size:17px;margin-top:8px}.mini small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#041e19f2;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:5;padding:8px 5px calc(8px + env(safe-area-inset-bottom))}
+.nav-inner{width:100%;max-width:650px;display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.nav button{background:transparent;color:#8bb4a1;border-radius:13px;padding:6px 2px;font-size:9px;display:flex;align-items:center;flex-direction:column;gap:4px}.nav button b{font-size:18px;font-weight:normal}.nav button.active{background:#1b5a42;color:var(--green)}
+.list-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);gap:12px}.list-row:last-child{border-bottom:0}.list-row strong{font-size:12px}.list-row small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.pill{background:#ffffff10;border:1px solid var(--line);padding:6px 9px;border-radius:30px;color:var(--mint);font-size:10px;white-space:nowrap}
+.field{margin:12px 0}.field label{display:block;color:#c7e9d8;font-size:11px;margin-bottom:7px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:13px;background:#062b23;color:var(--text);outline:none}.field input:focus,.field select:focus{border-color:#72f2a6}
+.field .suffix{font-size:10px;color:var(--muted);margin-top:5px}
+.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choice{border:1px solid var(--line);border-radius:14px;padding:12px;background:#082d25;color:var(--text);text-align:right}.choice.selected{border-color:var(--green);background:#14503b}.choice strong{font-size:12px;display:block}.choice small{display:block;font-size:10px;color:var(--muted);line-height:1.8;margin-top:4px}
+.checks{display:flex;flex-wrap:wrap;gap:7px}.check{display:flex;align-items:center;gap:6px;background:#ffffff0a;border:1px solid var(--line);border-radius:30px;padding:8px 10px;font-size:10px;color:#cde9da}.check input{accent-color:#72f2a6}
+.modal{position:fixed;inset:0;background:#00110edb;z-index:10;display:none;align-items:flex-end;justify-content:center;padding:10px}.modal.show{display:flex}.sheet{width:100%;max-width:620px;max-height:93vh;overflow:auto;background:#092d25;border:1px solid #72f2a62c;border-radius:25px;padding:20px 18px calc(20px + env(safe-area-inset-bottom));box-shadow:0 20px 80px #0009}.sheet h2{font-size:19px;margin:0 0 5px}.sheet>p{font-size:11px;color:var(--muted);line-height:1.9;margin:0 0 14px}
+.toast{position:fixed;bottom:92px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.2s;background:#e4fff0;color:#073325;padding:12px 17px;border-radius:13px;font-size:11px;font-weight:bold;z-index:20;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.chart-wrap{width:100%;height:190px}.chart-wrap canvas{width:100%;height:100%}
+.timer{font-size:43px;text-align:center;letter-spacing:2px;color:var(--green);font-weight:bold;padding:13px}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:9px}.step{padding:12px;border-radius:15px;background:#ffffff09;border:1px solid var(--line);line-height:1.8;font-size:11px}.step b{display:block;font-size:17px;margin-bottom:3px}
+.empty{text-align:center;padding:20px;color:var(--muted);font-size:11px;line-height:2}
+.notice{border:1px solid #ffd87a38;background:#ffd87a0c;padding:12px;border-radius:14px;color:#ead7a5;font-size:10px;line-height:1.9;margin-top:12px}
+.small-link{color:var(--green);font-size:11px;background:none;padding:5px}
+.footer{color:#6e9b86;text-align:center;font-size:9px;line-height:2;padding:12px}
+@media(min-width:500px){.hero h1{font-size:27px}.hero-stats{grid-template-columns:repeat(4,1fr)}.stat strong{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="brand-mark">❧</div><div><strong>نفس تازه</strong><small>هر روز، یک قدم به آزادی نزدیک‌تر</small></div></div>
+ <div class="top-date" id="todayDate">امروز<br>—</div>
+</header>
+
+<main>
+<section id="homePage" class="page active">
+ <div class="hero">
+  <div class="eyebrow">مسیر تازه تو از همین امروز شروع می‌شود 🌿</div>
+  <h1 id="welcomeTitle">تو از سیگار قوی‌تری.</h1>
+  <p id="welcomeText">قرار نیست کامل باشی؛ فقط کافی است امروز یک انتخاب بهتر داشته باشی.</p>
+  <div class="hero-stats">
+   <div class="stat"><small>روزهای بدون سیگار</small><strong id="streak">۰</strong><span>روز پیاپی</span></div>
+   <div class="stat"><small>سیگارهای کمترشده</small><strong id="avoided">۰</strong><span>نخ نسبت به قبل</span></div>
+   <div class="stat"><small>پول ذخیره‌شده</small><strong id="saved">۰</strong><span>تومان</span></div>
+   <div class="stat"><small>روز هدف ترک</small><strong id="daysLeft">—</strong><span>روز باقی‌مانده</span></div>
+  </div>
+ </div>
+
+ <div class="section-head"><strong>هدف امروزت</strong><span id="targetDate">—</span></div>
+ <div class="card">
+  <div class="target-row"><div><div class="hint">هدف مصرف امروز</div><div class="target-num"><span id="targetToday">۰</span> <small>نخ</small></div></div><span class="pill" id="methodPill">کاهش تدریجی</span></div>
+  <div class="progress"><span id="targetProgress"></span></div>
+  <div class="target-row"><span class="hint" id="todayCountText">تا الان ۰ نخ ثبت کردی</span><span class="pill" id="remainingText">۰ نخ باقی‌مانده</span></div>
+  <div class="actions">
+   <button class="btn primary" onclick="addCigarette()">＋ ثبت یک نخ</button>
+   <button class="btn secondary" onclick="undoCigarette()">↶ اصلاح آخرین ثبت</button>
+  </div>
+  <div class="actions">
+   <button class="btn secondary" onclick="markSmokeFree()">✓ امروز بدون سیگار بود</button>
+   <button class="btn secondary" onclick="finalizeDay()">ثبت نهایی امروز</button>
+  </div>
+  <p class="hint">ثبت صادقانه از عدد خوب مهم‌تر است. اگر لغزشی پیش آمد، فقط ثبت کن و از همان لحظه ادامه بده.</p>
+ </div>
+
+ <div class="section-head"><strong>قدم بعدی</strong><span>کمک فوری وقت وسوسه</span></div>
+ <div class="two">
+  <div class="mini" onclick="showPage('cravingPage')"><div class="ico">🌊</div><strong>موج وسوسه</strong><small>۱۰ دقیقه مکث و عبور از هوس</small></div>
+  <div class="mini" onclick="showPage('planPage')"><div class="ico">🧭</div><strong>برنامه من</strong><small>هدف هفتگی و مسیر ترک</small></div>
+ </div>
+ <div class="notice">یادت باشد: یک نخ یا یک روز سخت به معنی شکست نیست. خودت را سرزنش نکن؛ محرک را بشناس و دوباره به مسیر برگرد.</div>
+</section>
+
+<section id="reportPage" class="page">
+ <div class="section-head"><strong>گزارش پیشرفت</strong><span>۷ روز اخیر</span></div>
+ <div class="card">
+  <div class="target-row"><div><div class="hint">میانگین مصرف روزانه</div><div class="target-num"><span id="avgUse">۰</span> <small>نخ</small></div></div><div style="text-align:left"><div class="hint">کل صرفه‌جویی</div><strong id="reportMoney" style="color:var(--green)">۰ تومان</strong></div></div>
+  <div class="chart-wrap"><canvas id="chart"></canvas></div>
+  <div class="hint" id="chartRange"></div>
+ </div>
+ <div class="section-head"><strong>ثبت‌های اخیر</strong><span>بر اساس تاریخ شمسی</span></div>
+ <div class="card" id="recentLogs"><div class="empty">هنوز گزارشی ثبت نشده است.</div></div>
+ <div class="section-head"><strong>نشان‌های مسیر</strong><span>هر قدم ارزشمند است</span></div>
+ <div class="two" id="badges"></div>
+</section>
+
+<section id="planPage" class="page">
+ <div class="section-head"><strong>نقشه راه شخصی تو</strong><span>قابل ویرایش</span></div>
+ <div class="card" id="planSummary"></div>
+ <div class="section-head"><strong>هدف‌های مرحله‌ای</strong><span>بر اساس برنامه تو</span></div>
+ <div class="card" id="weeklyPlan"></div>
+ <div class="section-head"><strong>چند اصل مهم</strong></div>
+ <div class="card">
+  <div class="list-row"><div><strong>محرک‌هایت را بشناس</strong><small>قهوه، استرس، جمع دوستان یا بعد غذا؟</small></div><span class="pill">۱</span></div>
+  <div class="list-row"><div><strong>وسایل و موقعیت‌ها را آماده کن</strong><small>سیگار و فندک را دور از دسترس نگه دار.</small></div><span class="pill">۲</span></div>
+  <div class="list-row"><div><strong>برای لحظه سخت برنامه داشته باش</strong><small>آب، پیاده‌روی کوتاه و تنفس آرام را امتحان کن.</small></div><span class="pill">۳</span></div>
+  <div class="list-row"><div><strong>از حمایت کمک بگیر</strong><small>به یک فرد مورد اعتماد بگو که در مسیر ترک هستی.</small></div><span class="pill">۴</span></div>
+ </div>
+ <button class="btn primary" style="width:100%" onclick="openSetup(true)">ویرایش اطلاعات و برنامه</button>
+ <div class="notice">این برنامه ابزار پیگیری و همراهی است و جایگزین نظر پزشک نیست. درباره درمان‌های تأییدشده ترک نیکوتین و مناسب‌بودن آن‌ها برای خودت با پزشک یا داروساز مشورت کن.</div>
+</section>
+
+<section id="cravingPage" class="page">
+ <div class="section-head"><strong>از موج وسوسه عبور کن</strong><span>هوس معمولاً موجی و گذراست</span></div>
+ <div class="hero" style="text-align:center">
+  <div class="eyebrow">فقط ۱۰ دقیقه به خودت فرصت بده</div>
+  <div class="timer" id="timer">۱۰:۰۰</div>
+  <p style="margin:auto">تصمیم را عقب بینداز. لازم نیست با وسوسه بجنگی؛ بگذار موجش آرام شود.</p>
+  <button class="btn primary" style="width:100%;margin-top:17px" id="timerButton" onclick="toggleTimer()">شروع ۱۰ دقیقه</button>
+ </div>
+ <div class="section-head"><strong>همین حالا یکی را انجام بده</strong></div>
+ <div class="steps">
+  <div class="step"><b>💧 آب بنوش</b>یک لیوان آب خنک را آهسته بنوش.</div>
+  <div class="step"><b>🌬️ نفس آرام</b>۴ ثانیه دم، ۶ ثانیه بازدم؛ چند بار تکرار کن.</div>
+  <div class="step"><b>🚶 حرکت کن</b>از محل یا موقعیتی که محرک توست فاصله بگیر.</div>
+  <div class="step"><b>🍃 دهان و دست</b>آدامس بدون قند یا یک کار کوچک با دست‌ها انجام بده.</div>
+ </div>
+ <div class="section-head"><strong>ثبت وسوسه</strong><span>برای شناخت الگوها</span></div>
+ <div class="card">
+  <div class="field"><label>چه چیزی محرکت کرد؟</label><select id="cravingTrigger"><option>استرس یا عصبانیت</option><option>قهوه یا چای</option><option>بعد از غذا</option><option>جمع دوستان</option><option>بی‌حوصلگی</option><option>رانندگی یا مسیر رفت‌وآمد</option><option>عادت یا زمان مشخص</option><option>مورد دیگر</option></select></div>
+  <div class="field"><label>شدت وسوسه: <b id="intensityText">۳ از ۵</b></label><input id="cravingIntensity" type="range" min="1" max="5" value="3" oninput="document.getElementById('intensityText').textContent=this.value+' از ۵'"></div>
+  <div class="field"><label>نتیجه چه شد؟</label><select id="cravingResult"><option>از وسوسه عبور کردم</option><option>هنوز درگیرم</option><option>سیگار کشیدم و ثبت کردم</option></select></div>
+  <button class="btn primary" style="width:100%" onclick="saveCraving()">ثبت این لحظه</button>
+ </div>
+</section>
+
+<section id="settingsPage" class="page">
+ <div class="section-head"><strong>تنظیمات و اطلاعات من</strong><span>ذخیره روی همین گوشی</span></div>
+ <div class="card" id="profileSummary"></div>
+ <div class="card">
+  <div class="field"><label>زمان یادآور روزانه</label><input type="time" id="reminderTime" value="20:30"></div>
+  <div class="target-row"><span class="hint" id="reminderStatus">یادآور خاموش است</span><span class="pill">اعلان گوشی</span></div>
+  <div class="actions"><button class="btn primary" onclick="saveReminder()">فعال‌سازی یادآور</button><button class="btn secondary" onclick="disableReminder()">خاموش کردن</button></div>
+ </div>
+ <div class="card">
+  <div class="list-row"><div><strong>نسخه پشتیبان</strong><small>یک فایل برای نگهداری یا انتقال گزارش‌ها بساز.</small></div><span class="pill">JSON</span></div>
+  <button class="btn secondary" style="width:100%;margin-top:10px" onclick="exportData()">ذخیره نسخه پشتیبان</button>
+ </div>
+ <div class="card">
+  <div class="list-row"><div><strong>پاک‌کردن اطلاعات</strong><small>همه سوابق این برنامه از روی گوشی حذف می‌شود.</small></div><span class="pill">دائمی</span></div>
+  <button class="btn danger" style="width:100%;margin-top:10px" onclick="resetApp()">پاک‌کردن همه اطلاعات</button>
+ </div>
+ <div class="footer">نفس تازه • نسخه ۱.۰<br>اطلاعاتت فقط در حافظه همین گوشی ذخیره می‌شود.</div>
+</section>
+</main>
+</div>
+
+<nav class="nav"><div class="nav-inner">
+ <button class="active" data-page="homePage" onclick="showPage('homePage',this)"><b>⌂</b>خانه</button>
+ <button data-page="reportPage" onclick="showPage('reportPage',this)"><b>▥</b>گزارش</button>
+ <button data-page="planPage" onclick="showPage('planPage',this)"><b>◇</b>برنامه</button>
+ <button data-page="cravingPage" onclick="showPage('cravingPage',this)"><b>✧</b>وسوسه</button>
+ <button data-page="settingsPage" onclick="showPage('settingsPage',this)"><b>⚙</b>تنظیمات</button>
+</div></nav>
+
+<div class="modal" id="setupModal">
+ <div class="sheet">
+  <h2 id="setupTitle">به نفس تازه خوش آمدی 🌱</h2>
+  <p id="setupIntro">چند سؤال کوتاه تا برنامه‌ای متناسب با شرایط خودت بسازیم. اطلاعات فقط روی همین گوشی ذخیره می‌شود.</p>
+  <form onsubmit="saveSetup(event)">
+   <div class="field"><label>روزانه چند نخ سیگار می‌کشی؟</label><input type="number" id="dailyInput" min="1" max="100" value="10" required><div class="suffix">میانگین یک روز معمولی</div></div>
+   <div class="field"><label>چند سال است سیگار می‌کشی؟</label><input type="number" id="yearsInput" min="0" max="80" value="3"></div>
+   <div class="field"><label>قیمت یک پاکت سیگار به تومان</label><input type="number" id="priceInput" min="1" step="1000" value="100000" required></div>
+   <div class="field"><label>داخل هر پاکت چند نخ است؟</label><input type="number" id="packInput" min="1" max="100" value="20" required></div>
+   <div class="field"><label>کدام روش را انتخاب می‌کنی؟</label>
+    <div class="choice-row">
+     <button type="button" class="choice selected" id="gradualChoice" onclick="chooseMode('gradual')"><strong>کاهش تدریجی</strong><small>کم‌کردن مرحله‌به‌مرحله تا روز ترک</small></button>
+     <button type="button" class="choice" id="quitChoice" onclick="chooseMode('quit')"><strong>قطع از روز مشخص</strong><small>تعیین روز ترک و شروع بدون سیگار</small></button>
+    </div>
+   </div>
+   <div class="field" id="durationField"><label>در چند روز می‌خواهی به صفر برسی؟</label><select id="durationInput"><option value="14">۱۴ روز</option><option value="21">۲۱ روز</option><option value="30" selected>۳۰ روز</option><option value="45">۴۵ روز</option><option value="60">۶۰ روز</option><option value="90">۹۰ روز</option></select></div>
+   <div class="field" id="quitDateField" style="display:none"><label>چند روز دیگر روز ترک باشد؟</label><select id="quitDaysInput"><option value="1">از فردا</option><option value="3">۳ روز دیگر</option><option value="7" selected>۷ روز دیگر</option><option value="14">۱۴ روز دیگر</option></select></div>
+   <div class="field"><label>معمولاً چه چیزهایی هوس سیگار را بیشتر می‌کنند؟</label>
+    <div class="checks" id="triggerChecks">
+     <label class="check"><input type="checkbox" value="استرس">استرس</label>
+     <label class="check"><input type="checkbox" value="قهوه و چای">قهوه و چای</label>
+     <label class="check"><input type="checkbox" value="بعد غذا">بعد غذا</label>
+     <label class="check"><input type="checkbox" value="دوستان">دوستان</label>
+     <label class="check"><input type="checkbox" value="بی‌حوصلگی">بی‌حوصلگی</label>
+     <label class="check"><input type="checkbox" value="رانندگی">رانندگی</label>
+    </div>
+   </div>
+   <button class="btn primary" style="width:100%;margin-top:16px" type="submit" id="setupSubmit">ساخت برنامه شخصی من</button>
+  </form>
+ </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE='nafas_tazeh_v1';
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const iso=(d=new Date())=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const dateFromIso=s=>new Date(s+'T12:00:00');
+const fa=n=>Number(n||0).toLocaleString('fa-IR',{maximumFractionDigits:1});
+const money=n=>Math.round(n||0).toLocaleString('fa-IR')+' تومان';
+const dateFa=s=>new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'long',day:'numeric'}).format(dateFromIso(s));
+const shortDate=s=>new Intl.DateTimeFormat('fa-IR-u-ca-persian',{month:'short',day:'numeric'}).format(dateFromIso(s));
+const dayDiff=(a,b)=>Math.round((dateFromIso(b)-dateFromIso(a))/86400000);
+const addDays=(s,n)=>{const d=dateFromIso(s);d.setDate(d.getDate()+n);return iso(d)};
+const triggersDefault=['استرس','قهوه و چای','بعد غذا','دوستان','بی‌حوصلگی','رانندگی'];
+let state={profile:null,logs:{},cravings:[],reminder:{enabled:false,time:'20:30'}};
+let chosenMode='gradual',editingSetup=false,timerInterval=null,timerRemaining=600;
+function load(){try{const raw=localStorage.getItem(STORAGE);if(raw)state=Object.assign(state,JSON.parse(raw))}catch(e){}$('todayDate').innerHTML='امروز<br>'+dateFa(iso());if(!state.profile)openSetup(false);renderAll()}
+function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
+function todayLog(){const d=iso();if(!state.logs[d])state.logs[d]={count:0,smokeFree:false,confirmed:false};return state.logs[d]}
+function targetQuitDate(){const p=state.profile;if(!p)return iso();return p.mode==='quit'?addDays(p.startDate,p.quitDays):addDays(p.startDate,p.duration)}
+function targetForDate(d){const p=state.profile;if(!p)return 0;if(p.mode==='quit')return d<targetQuitDate()?p.daily:0;const elapsed=Math.max(0,dayDiff(p.startDate,d));const progress=Math.min(1,elapsed/Math.max(1,p.duration));return Math.max(0,Math.ceil(p.daily*(1-progress)-0.00001))}
+function savings(){if(!state.profile)return {saved:0,avoided:0};const p=state.profile;let saved=0,avoided=0;Object.keys(state.logs).forEach(d=>{if(d<p.startDate)return;const log=state.logs[d];const baseline=p.daily;const less=Math.max(0,baseline-(Number(log.count)||0));avoided+=less;saved+=less*(p.price/p.pack)});return {saved,avoided}}
+function streak(){let d=iso();if(!state.logs[d]?.smokeFree)d=addDays(d,-1);let n=0;for(let i=0;i<500;i++){const l=state.logs[d];if(!l||!l.smokeFree)break;n++;d=addDays(d,-1)}return n}
+function renderAll(){if(!state.profile)return;const p=state.profile,l=todayLog(),target=targetForDate(iso()),quit=targetQuitDate(),left=Math.max(0,dayDiff(iso(),quit)),s=savings();$('streak').textContent=fa(streak());$('avoided').textContent=fa(s.avoided);$('saved').textContent=fa(Math.round(s.saved/1000))+'هزار';$('daysLeft').textContent=left===0?'امروز':fa(left);$('targetDate').textContent=dateFa(iso());$('targetToday').textContent=fa(target);$('methodPill').textContent=p.mode==='quit'?'روز ترک مشخص':'کاهش تدریجی';$('todayCountText').textContent='تا الان '+fa(l.count||0)+' نخ ثبت کردی';$('remainingText').textContent=Math.max(0,target-(l.count||0))+' نخ باقی‌مانده';const pct=target===0?(l.smokeFree?100:0):Math.min(100,(l.count||0)/target*100);$('targetProgress').style.width=pct+'%';$('welcomeTitle').textContent=streak()>0?'به مسیرت افتخار کن؛ ادامه بده.':'تو از سیگار قوی‌تری.';$('welcomeText').textContent=streak()>0?' '+fa(streak())+' روز پیاپی بدون سیگار؛ هر روز یک پیروزی است.':'قرار نیست کامل باشی؛ فقط کافی است امروز یک انتخاب بهتر داشته باشی.';renderReport();renderPlan();renderSettings()}
+function addCigarette(){const l=todayLog();l.count=Math.min(100,(l.count||0)+1);l.smokeFree=false;l.confirmed=false;save();renderAll();toast('ثبت شد؛ بدون قضاوت، ادامه بده 🌱')}
+function undoCigarette(){const l=todayLog();if((l.count||0)<=0){toast('ثبت مصرفی برای اصلاح وجود ندارد.');return}if(!confirm('آخرین ثبت یک نخ از مصرف امروز حذف شود؟'))return;l.count=Math.max(0,l.count-1);l.confirmed=false;l.smokeFree=false;save();renderAll();toast('ثبت امروز اصلاح شد.')}
+function finalizeDay(){const l=todayLog();if(!confirm('تعداد ثبت‌شده امروز ('+fa(l.count||0)+' نخ) نهایی شود؟'))return;l.confirmed=true;l.smokeFree=(l.count||0)===0;save();renderAll();toast('گزارش امروز نهایی شد.')}
+function markSmokeFree(){const l=todayLog();if((l.count||0)>0){toast('امروز مصرف ثبت شده؛ روز بدون سیگار را ثبت نکن.');return}if(!confirm('تأیید می‌کنی که امروز هیچ سیگاری نکشیدی؟'))return;l.smokeFree=true;l.confirmed=true;save();renderAll();toast('آفرین! یک روز بدون سیگار ثبت شد 💚')}
+function showPage(id,button){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',button?b===button:b.dataset.page===id));if(id==='reportPage')drawChart();window.scrollTo(0,0)}
+function openSetup(edit){editingSetup=edit;const p=state.profile;chosenMode=p?.mode||'gradual';$('setupTitle').textContent=edit?'ویرایش برنامه من':'به نفس تازه خوش آمدی 🌱';$('setupIntro').textContent=edit?'اطلاعاتت را به‌روز کن تا هدف‌ها دوباره محاسبه شوند.':'چند سؤال کوتاه؛ تا برنامه‌ای متناسب با شرایط خودت بسازیم.';$('dailyInput').value=p?.daily||10;$('priceInput').value=p?.price||100000;$('packInput').value=p?.pack||20;$('yearsInput').value=p?.years||3;$('durationInput').value=p?.duration||30;$('quitDaysInput').value=p?.quitDays||7;document.querySelectorAll('#triggerChecks input').forEach(c=>c.checked=(p?.triggers||[]).includes(c.value));updateModeUI();$('setupModal').classList.add('show')}
+function closeSetup(){if(!state.profile){toast('برای شروع، اطلاعات اولیه را کامل کن.');return}$('setupModal').classList.remove('show')}
+function chooseMode(mode){chosenMode=mode;updateModeUI()}
+function updateModeUI(){$('gradualChoice').classList.toggle('selected',chosenMode==='gradual');$('quitChoice').classList.toggle('selected',chosenMode==='quit');$('durationField').style.display=chosenMode==='gradual'?'block':'none';$('quitDateField').style.display=chosenMode==='quit'?'block':'none'}
+function saveSetup(ev){ev.preventDefault();const daily=Number($('dailyInput').value),price=Number($('priceInput').value),pack=Number($('packInput').value),years=Number($('yearsInput').value||0);if(!(daily>0&&daily<=100&&price>0&&pack>0&&pack<=100)){toast('لطفاً عددهای معتبر وارد کن.');return}const triggers=[...document.querySelectorAll('#triggerChecks input:checked')].map(c=>c.value);state.profile={daily,price,pack,years,mode:chosenMode,duration:Number($('durationInput').value),quitDays:Number($('quitDaysInput').value),startDate:state.profile?.startDate||iso(),triggers:triggers.length?triggers:triggersDefault};if(!state.logs[state.profile.startDate])state.logs[state.profile.startDate]={count:0};save();$('setupModal').classList.remove('show');renderAll();showPage('homePage');toast(editingSetup?'برنامه‌ات به‌روز شد 🌿':'برنامه شخصی تو آماده شد 🌿')}
+function renderReport(){if(!state.profile)return;const days=[];for(let i=6;i>=0;i--){const d=addDays(iso(),-i);days.push({date:d,count:state.logs[d]?.count||0})}const avg=days.reduce((a,b)=>a+b.count,0)/7;const s=savings();$('avgUse').textContent=fa(avg.toFixed(1));$('reportMoney').textContent=money(s.saved);$('chartRange').textContent=shortDate(days[0].date)+' تا '+shortDate(days[6].date);const recent=Object.entries(state.logs).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,7);$('recentLogs').innerHTML=recent.length?recent.map(([d,l])=>'<div class="list-row"><div><strong>'+dateFa(d)+'</strong><small>'+(l.confirmed?'گزارش نهایی':'ثبت روزانه')+'</small></div><span class="pill">'+fa(l.count||0)+' نخ</span></div>').join(''):'<div class="empty">هنوز گزارشی ثبت نشده است.</div>';const m=streak();const goals=[['یک روز پاک',m>=1],['سه روز پیاپی',m>=3],['یک هفته',m>=7],['دو هفته',m>=14]];$('badges').innerHTML=goals.map(g=>'<div class="mini"><div class="ico">'+(g[1]?'🏆':'🔒')+'</div><strong>'+g[0]+'</strong><small>'+(g[1]?'به دست آوردی؛ آفرین':'با ادامه مسیر باز می‌شود')+'</small></div>').join('');setTimeout(drawChart,30)}
+function drawChart(){const c=$('chart');if(!c||!c.offsetWidth)return;const ctx=c.getContext('2d'),ratio=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*ratio;c.height=h*ratio;ctx.scale(ratio,ratio);ctx.clearRect(0,0,w,h);const vals=[];for(let i=6;i>=0;i--){const d=addDays(iso(),-i);vals.push({d,v:state.logs[d]?.count||0})}const max=Math.max(5,...vals.map(x=>x.v),state.profile?.daily||0),left=22,right=12,top=12,bottom=28,ph=h-top-bottom,pw=w-left-right;ctx.strokeStyle='rgba(180,240,205,.13)';for(let j=0;j<4;j++){const y=top+j*ph/3;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke()}const step=pw/7;vals.forEach((x,i)=>{const bh=x.v/max*(ph-4),bx=left+i*step+step*.22,bw=step*.56,by=top+ph-bh;ctx.fillStyle=i===6?'#8bffc0':'#35a978';ctx.beginPath();ctx.roundRect(bx,by,bw,Math.max(3,bh),6);ctx.fill();ctx.fillStyle='#a7cdb7';ctx.font='10px Tahoma';ctx.textAlign='center';ctx.fillText(new Intl.DateTimeFormat('fa-IR-u-ca-persian',{day:'numeric'}).format(dateFromIso(x.d)),bx+bw/2,h-7)})}
+function renderPlan(){if(!state.profile)return;const p=state.profile,quit=targetQuitDate(),left=Math.max(0,dayDiff(iso(),quit));$('planSummary').innerHTML='<div class="target-row"><strong>مسیر تو تا آزادی</strong><span class="pill">'+(p.mode==='quit'?'روز ترک مشخص':'کاهش تدریجی')+'</span></div><p class="hint">شروع برنامه: '+dateFa(p.startDate)+'<br>روز هدف ترک: '+dateFa(quit)+'<br>'+(iso()<quit?'حدود '+fa(left)+' روز تا روز هدف باقی مانده.':'روز هدف رسیده؛ امروز را برای خودت نگه دار.')+'</p><div class="progress"><span style="width:'+Math.min(100,Math.max(0,dayDiff(p.startDate,iso())/Math.max(1,dayDiff(p.startDate,quit))*100))+'%"></span></div>';let html='';for(let w=0;w<Math.min(12,Math.ceil((p.mode==='quit'?p.quitDays:p.duration)/7)+1);w++){const d=addDays(p.startDate,w*7),t=targetForDate(d);html+='<div class="list-row"><div><strong>هفته '+fa(w+1)+'</strong><small>از '+dateFa(d)+'</small></div><span class="pill">'+fa(t)+' نخ در روز</span></div>'}$('weeklyPlan').innerHTML=html;$('profileSummary').innerHTML='<div class="list-row"><div><strong>مصرف پیش از شروع</strong><small>'+fa(p.daily)+' نخ در روز</small></div><span class="pill">'+p.years+' سال سابقه</span></div><div class="list-row"><div><strong>هزینه هر پاکت</strong><small>'+money(p.price)+'</small></div><span class="pill">'+fa(p.pack)+' نخ</span></div><div class="list-row"><div><strong>محرک‌های ثبت‌شده</strong><small>'+(p.triggers||[]).join('، ')+'</small></div><span class="pill">'+fa((p.triggers||[]).length)+' مورد</span></div>'}
+function renderSettings(){if(!state.profile)return;$('reminderTime').value=state.reminder?.time||'20:30';$('reminderStatus').textContent=state.reminder?.enabled?'یادآور روشن است':'یادآور خاموش است'}
+function openCraving(){showPage('cravingPage')}
+function saveCraving(){const entry={date:iso(),time:new Date().toISOString(),trigger:$('cravingTrigger').value,intensity:Number($('cravingIntensity').value),result:$('cravingResult').value};state.cravings.push(entry);save();toast('وسوسه ثبت شد؛ شناخت محرک‌ها یعنی پیشرفت 🌱')}
+function toggleTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;$('timerButton').textContent='ادامه ۱۰ دقیقه';return}if(timerRemaining<=0)timerRemaining=600;$('timerButton').textContent='مکث موقت';timerInterval=setInterval(()=>{timerRemaining--;const m=Math.floor(timerRemaining/60),s=timerRemaining%60;$('timer').textContent=pad(m)+':'+pad(s);if(timerRemaining<=0){clearInterval(timerInterval);timerInterval=null;$('timerButton').textContent='دوباره انجام بده';toast('آفرین! یک موج دیگر را پشت سر گذاشتی 💚');timerRemaining=600}},1000)}
+function saveReminder(){const v=$('reminderTime').value||'20:30',[h,m]=v.split(':').map(Number);state.reminder={enabled:true,time:v};save();if(window.NafasAndroid){NafasAndroid.requestNotificationPermission();NafasAndroid.scheduleDailyReminder(h,m,'یک لحظه مکث کن؛ انتخاب امروزت، نفس تازه توست.')}renderSettings();toast('یادآور روزانه ذخیره شد 🔔')}
+function disableReminder(){state.reminder={enabled:false,time:$('reminderTime').value||'20:30'};save();if(window.NafasAndroid)NafasAndroid.cancelDailyReminder();renderSettings();toast('یادآور خاموش شد')}
+function exportData(){const json=JSON.stringify(state,null,2);if(window.NafasAndroid&&NafasAndroid.requestBackup){NafasAndroid.requestBackup(json);return}const blob=new Blob([json],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='nafas-tazeh-backup-'+iso()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function resetApp(){if(!confirm('تمام اطلاعات این برنامه از روی گوشی پاک شود؟ این کار قابل بازگشت نیست.'))return;localStorage.removeItem(STORAGE);if(window.NafasAndroid)NafasAndroid.cancelDailyReminder();location.reload()}
+function toast(s){const t=$('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
+window.handleAndroidBack=function(){if($('setupModal').classList.contains('show')){closeSetup();return}showPage('homePage')};
+window.addEventListener('resize',()=>{if($('reportPage').classList.contains('active'))drawChart()});
+load();
+</script>
+</body></html>
